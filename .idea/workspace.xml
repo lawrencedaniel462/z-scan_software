@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Detector Software.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/COM.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data_Com_Ctrl.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deleted Code.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Demo.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Excel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI_Master.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Master.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/USB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_file.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libusb-1.0.dll" afterDir="false" />
+    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="Basic GUI">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +15,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "lawrencedaniel462"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lawrencedaniel462/z-scan_software.git",
+    "accountId": "be0b5cc0-ea58-4ec0-be31-bcf129da6162"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
 }]]></component>
@@ -92,9 +88,20 @@
       <option name="presentableId" value="Default" />
       <updated>1726543846273</updated>
     </task>
+    <task id="LOCAL-00001" summary="Basic GUI">
+      <option name="closed" value="true" />
+      <created>1726557256989</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726557256989</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Basic GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic GUI" />
   </component>
 </project>

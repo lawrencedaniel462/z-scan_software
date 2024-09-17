@@ -13,5 +13,7 @@
         <step_value_unit>microns</step_value_unit>
         <open_aperture_dia>5</open_aperture_dia>
         <close_aperture_dia>4</close_aperture_dia>
+        <pulse_width>180</pulse_width>
+        <steps_per_rotation>800</steps_per_rotation>
     </default>
 </root>
