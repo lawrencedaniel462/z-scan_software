@@ -26,5 +26,6 @@ class Style:
         self.button_active_foreground = "#000000"
         self.bold_font = ('Helvetica', 10, 'bold')
 
+
 if __name__ == "__main__":
     Style()

@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="GUI improved and functionality added" />
+    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="GUI improved and functionality added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Excel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI_Master.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI_Master.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Master.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/commands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_file.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data_file.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/styles.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +48,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.Master.executor": "Run",
+    "Python.Root_gui.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -102,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726558298292</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="GUI improved and functionality added">
+      <option name="closed" value="true" />
+      <created>1726558475361</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726558475361</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

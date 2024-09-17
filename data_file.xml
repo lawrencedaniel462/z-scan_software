@@ -3,6 +3,13 @@
         <wavelength>632.8</wavelength>
         <bandwidth>High</bandwidth>
         <thread_spacing>1</thread_spacing>
+        <laser_power>0.021</laser_power>
+        <laser_beam_diameter>5</laser_beam_diameter>
+        <transmittance>0</transmittance>
+        <transmittance_thickness>0</transmittance_thickness>
+        <beam_rad_at_aperture>4.5</beam_rad_at_aperture>
+        <z_scan_sample_thickness>1</z_scan_sample_thickness>
+        <linear_refractive_index>1</linear_refractive_index>
     </config>
     <default>
         <start_value>35.7</start_value>
@@ -11,8 +18,8 @@
         <stop_value_unit>mm</stop_value_unit>
         <step_value>100</step_value>
         <step_value_unit>microns</step_value_unit>
-        <open_aperture_dia>5</open_aperture_dia>
-        <close_aperture_dia>4</close_aperture_dia>
+        <focal_length>200</focal_length>
+        <close_aperture_dia>2</close_aperture_dia>
         <pulse_width>180</pulse_width>
         <steps_per_rotation>800</steps_per_rotation>
     </default>
