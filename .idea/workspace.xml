@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="Basic GUI">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="GUI improved and functionality added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,12 +94,21 @@
       <option name="project" value="LOCAL" />
       <updated>1726557256989</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="GUI improved and functionality added">
+      <option name="closed" value="true" />
+      <created>1726558298292</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726558298292</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Basic GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic GUI" />
+    <MESSAGE value="GUI improved and functionality added" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI improved and functionality added" />
   </component>
 </project>
