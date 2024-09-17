@@ -1,0 +1,17 @@
+<root>
+    <config>
+        <wavelength>632.8</wavelength>
+        <bandwidth>High</bandwidth>
+        <thread_spacing>1</thread_spacing>
+    </config>
+    <default>
+        <start_value>35.7</start_value>
+        <start_value_unit>mm</start_value_unit>
+        <stop_value>20</stop_value>
+        <stop_value_unit>mm</stop_value_unit>
+        <step_value>100</step_value>
+        <step_value_unit>microns</step_value_unit>
+        <open_aperture_dia>5</open_aperture_dia>
+        <close_aperture_dia>4</close_aperture_dia>
+    </default>
+</root>
