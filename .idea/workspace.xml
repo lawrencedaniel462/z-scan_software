@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="GUI improved and functionality added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Excel.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI_Master.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI_Master.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Master.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/commands.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_file.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data_file.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/styles.py" afterDir="false" />
-    </list>
+    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="open file functionality and calculation part added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +39,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.GUI_Master.executor": "Run",
     "Python.Master.executor": "Run",
     "Python.Root_gui.executor": "Run",
     "Python.main.executor": "Run",
@@ -119,13 +112,40 @@
       <option name="project" value="LOCAL" />
       <updated>1726558475361</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="open file functionality and calculation part added">
+      <option name="closed" value="true" />
+      <created>1726587497310</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726587497310</updated>
+    </task>
+    <task id="LOCAL-00005" summary="open file functionality and calculation part added">
+      <option name="closed" value="true" />
+      <created>1726588074360</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726588074360</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Basic GUI" />
     <MESSAGE value="GUI improved and functionality added" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI improved and functionality added" />
+    <MESSAGE value="open file functionality and calculation part added" />
+    <option name="LAST_COMMIT_MESSAGE" value="open file functionality and calculation part added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/GUI_Master.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
