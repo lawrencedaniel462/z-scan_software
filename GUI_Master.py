@@ -1312,9 +1312,43 @@ class CommGUI:
                     if self.run_button_without_aperture["text"] == "Stop Run":
                         self.without_aperture_x_data = self.x_data
                         self.without_aperture_y_data = self.y_data
+                        self.viewer_open_x = self.x_data
+                        self.viewer_open_y = self.y_data
+
+                        self.lines1.set_xdata([])
+                        self.lines1.set_ydata([])
+                        self.canvas1.draw()
+
+                        self.lines1.set_xdata(self.viewer_open_x)
+                        self.lines1.set_ydata(self.viewer_open_y)
+                        self.ax1.set_ylim([min(self.viewer_open_y) - (min(self.viewer_open_y) * 0.01),
+                                           max(self.viewer_open_y) + (max(self.viewer_open_y) * 0.01)])
+                        self.ax1.set_xlim([min(self.viewer_open_x), max(self.viewer_open_x)])
+                        self.lines2.set_xdata([])
+                        self.lines2.set_ydata([])
+                        self.normalize_button_1["state"] = "normal"
+                        self.canvas1.draw()
+
                     elif self.run_button_with_aperture["text"] == "Stop Run":
                         self.with_aperture_x_data = self.x_data
                         self.with_aperture_y_data = self.y_data
+                        self.viewer_close_x = self.x_data
+                        self.viewer_close_y = self.y_data
+
+                        self.lines3.set_xdata([])
+                        self.lines3.set_ydata([])
+                        self.canvas1.draw()
+
+                        self.lines3.set_xdata(self.viewer_close_x)
+                        self.lines3.set_ydata(self.viewer_close_y)
+                        self.ax3.set_ylim([min(self.viewer_close_y) - (min(self.viewer_close_y) * 0.05),
+                                           max(self.viewer_close_y) + (max(self.viewer_close_y) * 0.05)])
+                        self.ax3.set_xlim([min(self.viewer_close_x), max(self.viewer_close_x)])
+                        self.lines4.set_xdata([])
+                        self.lines4.set_ydata([])
+                        self.normalize_button_2["state"] = "normal"
+                        self.canvas1.draw()
+
                     self.x_data = np.array([])
                     self.x_data = np.array([])
                     self.status_retainer()
@@ -1332,6 +1366,9 @@ class CommGUI:
                     self.steps_remaining_value["text"] = ""
                     self.steps_completed_value["text"] = ""
                     self.total_step_value["text"] = ""
+
+                    self.calculation.update_values(self)
+                    self.Home()
 
     def sendCommand(self, command):
         self.command = command

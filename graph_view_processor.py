@@ -170,8 +170,8 @@ class graph_processor:
     def normalize(self, gui, number):
         self.edge_fraction_1 = 0
         self.edge_fraction_2 = 0
-        x=[]
-        y=[]
+        x = []
+        y = []
         self.slider: matplotlib.widgets.Slider
         if number == 1:
             x = gui.viewer_open_x
@@ -185,7 +185,7 @@ class graph_processor:
         plt.plot(x, y)
         min_val = min(y)
         max_val = max(y)
-        ln = plt.axhline(y=(min_val + max_val) / 2, color='r', linestyle='--')
+        ln = ax.axhline(y=(min_val + max_val) / 2, color='r', linestyle='--')
         plt.xlabel('Distance in mm')
         plt.ylabel('Power in watt')
 
@@ -209,16 +209,16 @@ class graph_processor:
         def update(val):
             if number == 1:
                 self.edge_fraction_1 = self.slider.val
-                ln.set_ydata(self.edge_fraction_1)
+                ln.set_ydata([self.edge_fraction_1])
                 gui.initial_slider_value_1 = self.edge_fraction_1
             elif number == 2:
                 self.edge_fraction_2 = self.slider.val
-                ln.set_ydata(self.edge_fraction_2)
+                ln.set_ydata([self.edge_fraction_2])
                 gui.initial_slider_value_2 = self.edge_fraction_2
             fig.canvas.draw_idle()
 
         def apply(val):
-            if number ==1:
+            if number == 1:
                 gui.viewer_normalized_open_x = gui.viewer_open_x
                 gui.viewer_open_y = np.array(gui.viewer_open_y)
                 gui.viewer_normalized_open_y = gui.viewer_open_y / gui.initial_slider_value_1

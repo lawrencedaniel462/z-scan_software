@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk, messagebox, filedialog
+import matplotlib.pyplot as plt
 import math
 
 
@@ -231,7 +232,7 @@ class Calculation:
         self.export_graph_button = Button(self.button_frame,
                                          text="Export graph",
                                          width=23,
-                                         command=lambda: self.update_values(gui),
+                                         command=lambda: self.export_graph(gui),
                                          bg=gui.styles.button_background,
                                          fg=gui.styles.button_foreground,
                                          bd=gui.styles.button_border_size,
@@ -326,7 +327,7 @@ class Calculation:
         self.calculate_button.grid(row=0, column=0, padx=5)
         self.export_data_button.grid(row=0, column=1, padx=5)
         self.export_graph_button.grid(row=0, column=2, padx=5)
-        self.export_custom_graph_button.grid(row=0, column=3, padx=5)
+        # self.export_custom_graph_button.grid(row=0, column=3, padx=5)
 
     def update_values(self,gui):
         self.wavelength_value["text"] = gui.wavelength_entry.get() + self.wavelength_unit
@@ -373,7 +374,7 @@ class Calculation:
         except:
             pass
         try:
-            alpha = (2.306 * 1000 / transmittance_thickness) * math.log10(100 / transmittance)
+            alpha = 2.303 * (1000 / transmittance_thickness) * math.log10(100 / transmittance)
             self.alpha_value["text"] = f"{alpha} " + self.alpha_unit
         except:
             pass
@@ -502,14 +503,172 @@ class Calculation:
             worksheet.write("C2", gui.sweeping_distance_value, self.default)
             worksheet.write("C3", gui.step_distance_value, self.default)
             worksheet.write("C4", gui.bandwidth_value, self.default)
-            worksheet.write("C5", self.wavelength_value, self.default)
-            worksheet.write("C6", self.laser_beam_input_power_value, self.default)
-            worksheet.write("C7", self.laser_beam_diameter_value, self.default)
-            worksheet.write("C8", self.focal_length_value, self.default)
-            worksheet.write("C9", self.close_aperture_value, self.default)
-            worksheet.write("C10", self.beam_rad_at_aperture_value, self.default)
-            worksheet.write("C11", self.z_scan_sample_thickness_value, self.default)
-            worksheet.write("C12", "-", self.make_as_text)
-            worksheet.write("C13", "-", self.make_as_text)
-            worksheet.write("C14", "-", self.make_as_text)
+            worksheet.write("C5", self.wavelength_value["text"], self.default)
+            worksheet.write("C6", self.laser_beam_input_power_value["text"], self.default)
+            worksheet.write("C7", self.laser_beam_diameter_value["text"], self.default)
+            worksheet.write("C8", self.focal_length_value["text"], self.default)
+            worksheet.write("C9", self.close_aperture_value["text"], self.default)
+            worksheet.write("C10", self.beam_rad_at_aperture_value["text"], self.default)
+            worksheet.write("C11", self.z_scan_sample_thickness_value["text"], self.default)
+            worksheet.write("C12", str(self.linear_refractive_index_value["text"]), self.default)
+            worksheet.write("C13", str(self.transmittance_value["text"]), self.default)
+            worksheet.write("C14", self.transmittance_thickness_value["text"], self.default)
+            worksheet.write("C15", str(abs(float(self.del_phi_open_value["text"]))), self.default)
+
+
+            worksheet.merge_range("A15:B15", "")
+            worksheet.write_rich_string("A15",
+                                        self.bold, "Open Aperture (∆T",
+                                        self.subscript_bold, "n-p",
+                                        self.bold, ")")
+
+            worksheet.merge_range("E2:F2", "")
+            worksheet.write_rich_string("E2",
+                                        self.bold, "Close Aperture (∆T",
+                                        self.subscript_bold, "v-p",
+                                        self.bold, ")")
+            worksheet.merge_range("E3:F3", "Linear absorption coefficient", self.bold)
+            worksheet.merge_range("E4:F4", "Beam waist at focal point", self.bold)
+            worksheet.merge_range("E5:F5", "")
+            worksheet.write_rich_string("E5",
+                                        self.bold, "I",
+                                        self.subscript_bold, "o")
+            worksheet.merge_range("E6:F6", "Rayleigh Length", self.bold)
+            worksheet.merge_range("E7:F7", "Linear transmittance", self.bold)
+            worksheet.merge_range("E8:F8", "Axis phase shift at focus", self.bold)
+            worksheet.merge_range("E9:F9", "")
+            worksheet.write_rich_string("E9",
+                                        self.bold, "L",
+                                        self.subscript_bold, "eff")
+            worksheet.merge_range("E10:F10", "k", self.bold)
+            worksheet.merge_range("E11:F11", "Non-linear refractive index", self.bold)
+            worksheet.merge_range("E12:F12", "Non-linear absorption coefficient", self.bold)
+            worksheet.merge_range("E13:F13", "Real Part", self.bold)
+            worksheet.merge_range("E14:F14", "Imaginary Part", self.bold)
+            worksheet.merge_range("E15:F15", "Susceptibility", self.bold)
+
+            worksheet.write("G3", self.alpha_value["text"], self.default)
+            worksheet.write("G4", self.Omega_not_value["text"], self.default)
+            worksheet.write("G5", self.I_not_value["text"], self.default)
+            worksheet.write("G6", self.ZR_value["text"], self.default)
+            worksheet.write("G7", self.S_value["text"], self.default)
+            worksheet.write("G8", self.del_phi_value["text"], self.default)
+            worksheet.write("G9", self.leff_value["text"], self.default)
+            worksheet.write("G10", self.k_value["text"], self.default)
+            worksheet.write("G11", self.n2_value["text"], self.default)
+            worksheet.write("G12", self.beta_value["text"], self.default)
+            worksheet.write("G13", self.real_value["text"], self.default)
+            worksheet.write("G14", self.imaginary_value["text"], self.default)
+            worksheet.write("G15", self.susceptibility_value["text"], self.default)
+
+            open_aperture_x = gui.viewer_open_x
+            open_aperture_y = gui.viewer_open_y
+            open_aperture_normalized_x = gui.viewer_normalized_open_x
+            open_aperture_normalized_y = gui.viewer_normalized_open_y
+            close_aperture_x = gui.viewer_close_x
+            close_aperture_y = gui.viewer_close_y
+            close_aperture_normalized_x = gui.viewer_normalized_close_x
+            close_aperture_normalized_y = gui.viewer_normalized_close_y
+
+            if len(open_aperture_x) > 0:
+                worksheet.merge_range("A17:B17", "Open Aperture", self.bold_and_border_and_center)
+                worksheet.write("A18", "Distance in mm", self.bold_and_border_and_center)
+                worksheet.write("B18", "Power in W", self.bold_and_border_and_center)
+                row = 18
+                column = 0
+
+                for item in open_aperture_x:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
+                row = 18
+                column = 1
+
+                for item in open_aperture_y:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
+            if len(close_aperture_x) > 0:
+                worksheet.merge_range("C17:D17", "Close Aperture", self.bold_and_border_and_center)
+                worksheet.write("C18", "Distance in mm", self.bold_and_border_and_center)
+                worksheet.write("D18", "Power in W", self.bold_and_border_and_center)
+                row = 18
+                column = 2
+
+                for item in close_aperture_x:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
+                row = 18
+                column = 3
+
+                for item in close_aperture_y:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
+            if len(open_aperture_normalized_x) > 0:
+                worksheet.merge_range("E17:F17", "Open Aperture (Normalized)", self.bold_and_border_and_center)
+                worksheet.write("E18", "Z (mm)", self.bold_and_border_and_center)
+                worksheet.write("F18", "Normalized Transmittance", self.bold_and_border_and_center)
+                row = 18
+                column = 4
+
+                for item in open_aperture_normalized_x:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
+                row = 18
+                column = 5
+
+                for item in open_aperture_normalized_y:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
+            if len(close_aperture_normalized_x) > 0:
+                worksheet.merge_range("G17:H17", "Close Aperture (Normalized)", self.bold_and_border_and_center)
+                worksheet.write("G18", "Z (mm)", self.bold_and_border_and_center)
+                worksheet.write("H18", "Normalized Transmittance", self.bold_and_border_and_center)
+                row = 18
+                column = 6
+
+                for item in close_aperture_normalized_x:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
+                row = 18
+                column = 7
+
+                for item in close_aperture_normalized_y:
+                    worksheet.write(row, column, item, self.border)
+                    row += 1
+
             workbook.close()
+            messagebox.showinfo("File status", "File exported successfully")
+
+    def export_graph(self, gui):
+        plt.subplots_adjust(left=0.06, right=0.98, top=0.95, bottom=0.09, hspace=0.4, wspace=0.15)
+        plt.subplot(2, 2, 1)
+        plt.plot(gui.viewer_open_x, gui.viewer_open_y)
+        plt.title("Open aperture")
+        plt.xlabel("Distance in mm")
+        plt.ylabel("Power in W")
+
+        plt.subplot(2, 2, 2)
+        plt.plot(gui.viewer_close_x, gui.viewer_close_y)
+        plt.title("Close aperture")
+        plt.xlabel("Distance in mm")
+        plt.ylabel("Power in W")
+
+        plt.subplot(2, 2, 3)
+        plt.plot(gui.viewer_normalized_open_x, gui.viewer_normalized_open_y)
+        plt.title("Open aperture (Normalized)")
+        plt.xlabel("Z (mm)")
+        plt.ylabel("Normalized Transmittance")
+
+        plt.subplot(2, 2, 4)
+        plt.plot(gui.viewer_normalized_close_x, gui.viewer_normalized_close_y)
+        plt.title("Close aperture (Normalized)")
+        plt.xlabel("Z (mm)")
+        plt.ylabel("Normalized Transmittance")
+
+        plt.show()
