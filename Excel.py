@@ -107,14 +107,14 @@ class Excel:
             worksheet.merge_range("A17:B17", "Open Aperture", self.bold_and_border_and_center)
             worksheet.write("A18", "Distance in mm", self.bold_and_border_and_center)
             worksheet.write("B18", "Power in W", self.bold_and_border_and_center)
-            row = 19
+            row = 18
             column = 0
 
             for item in data.without_aperture_x_data:
                 worksheet.write(row, column, item, self.border)
                 row += 1
 
-            row = 19
+            row = 18
             column = 1
 
             for item in data.without_aperture_y_data:
@@ -132,14 +132,14 @@ class Excel:
             worksheet.merge_range("A17:B17", "Close Aperture", self.bold_and_border_and_center)
             worksheet.write("A18", "Distance in mm", self.bold_and_border_and_center)
             worksheet.write("B18", "Power in W", self.bold_and_border_and_center)
-            row = 19
+            row = 18
             column = 0
 
             for item in data.with_aperture_x_data:
                 worksheet.write(row, column, item, self.border)
                 row += 1
 
-            row = 19
+            row = 18
             column = 1
 
             for item in data.with_aperture_y_data:
@@ -199,28 +199,28 @@ class Excel:
                 worksheet.write("C18", "Distance in mm", self.bold_and_border_and_center)
                 worksheet.write("D18", "Power in W", self.bold_and_border_and_center)
 
-                row = 19
+                row = 18
                 column = 0
 
                 for item in data.without_aperture_x_data:
                     worksheet.write(row, column, item, self.border)
                     row += 1
 
-                row = 19
+                row = 18
                 column = 1
 
                 for item in data.without_aperture_y_data:
                     worksheet.write(row, column, item, self.border)
                     row += 1
 
-                row = 19
+                row = 18
                 column = 2
 
                 for item in data.with_aperture_x_data:
                     worksheet.write(row, column, item, self.border)
                     row += 1
 
-                row = 19
+                row = 18
                 column = 3
 
                 for item in data.with_aperture_y_data:

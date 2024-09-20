@@ -95,7 +95,7 @@ class CommGUI:
         self.wavelength_value = self.xml[0][0].text
         self.bandwidth_value = self.xml[0][1].text
 
-        # self.notebook.hide(1)
+        self.notebook.hide(1)
 
         self.x_data = np.array([])
         self.y_data = np.array([])
@@ -440,6 +440,18 @@ class CommGUI:
                                  activebackground=self.styles.button_active_background,
                                  activeforeground=self.styles.button_active_foreground,
                                  font=self.styles.bold_font)
+        self.intensity_button = Button(self.communication_frame,
+                                  text="Start Run", width=23,
+                                  command=self.Home,
+                                  bg=self.styles.button_background,
+                                  fg=self.styles.button_foreground,
+                                  bd=self.styles.button_border_size,
+                                  highlightbackground=self.styles.button_highlight_background,
+                                  highlightcolor=self.styles.button_highlight_foreground,
+                                  disabledforeground=self.styles.button_disabled_foreground,
+                                  activebackground=self.styles.button_active_background,
+                                  activeforeground=self.styles.button_active_foreground,
+                                  font=self.styles.bold_font)
         self.home_to_maxima = Label(self.communication_frame, text="Distance from Home to Maxima", anchor="w", width=27,
                                 bg=self.styles.bg_color)
         self.sweeping_distance = Label(self.communication_frame, text="Half Sweeping Distance", anchor="w", width=27,
@@ -1368,13 +1380,13 @@ class CommGUI:
                     self.total_step_value["text"] = ""
 
                     self.calculation.update_values(self)
+                    self.calculation.update_button["state"] = "normal"
                     self.Home()
 
     def sendCommand(self, command):
-        self.command = command
         # print("S= " + command)
         self.ser.reset_output_buffer()
-        self.ser.write(self.command.encode("utf-8"))
+        self.ser.write(command.encode("utf-8"))
 
     def receiveCommand(self):
         self.tester = 0
