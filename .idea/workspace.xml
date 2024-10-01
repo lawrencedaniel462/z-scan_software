@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="open file functionality and calculation part added">
+    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="Return home functionality and calculation part checked">
+      <change afterPath="$PROJECT_DIR$/Demo001 open aperture.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Arduino/Arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/Arduino/Arduino.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Demo Excel.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Demo Excel.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo from test.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Demo from test.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Excel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Excel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI_Master.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI_Master.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculations.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_file.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data_file.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +53,10 @@
     &quot;Python.GUI_Master.executor&quot;: &quot;Run&quot;,
     &quot;Python.Master.executor&quot;: &quot;Run&quot;,
     &quot;Python.Root_gui.executor&quot;: &quot;Run&quot;,
+    &quot;Python.excel.executor&quot;: &quot;Run&quot;,
     &quot;Python.graph_view_processor.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.summa.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -106,10 +109,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="summa" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Detector Software" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$ 1/V3" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$ 1/V3/summa.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.main" />
       <item itemvalue="Python.Master" />
+      <item itemvalue="Python.summa" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.summa" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -191,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726761878188</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Return home functionality and calculation part checked">
+      <option name="closed" value="true" />
+      <created>1726817794556</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726817794556</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -199,6 +238,7 @@
     <MESSAGE value="Basic GUI" />
     <MESSAGE value="GUI improved and functionality added" />
     <MESSAGE value="open file functionality and calculation part added" />
-    <option name="LAST_COMMIT_MESSAGE" value="open file functionality and calculation part added" />
+    <MESSAGE value="Return home functionality and calculation part checked" />
+    <option name="LAST_COMMIT_MESSAGE" value="Return home functionality and calculation part checked" />
   </component>
 </project>

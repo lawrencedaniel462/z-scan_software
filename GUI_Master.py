@@ -7,8 +7,10 @@ import xml.etree.ElementTree as et
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import numpy as np
+import datetime
 
 tree = et.parse("data_file.xml")
+x = datetime.datetime.now()
 
 
 # bg = button_background, fg = button_foreground, bd = button_border_size, highlightbackground = button_highlight_background, highlightcolor = button_highlight_foreground, disabledforeground = button_disabled_foreground
@@ -91,6 +93,7 @@ class CommGUI:
         self.overall_threading = False
         self.value_show_threading = False
         self.run_threading_status = False
+        self.intensity_threading_status = False
         self.com_list = []
         self.wavelength_value = self.xml[0][0].text
         self.bandwidth_value = self.xml[0][1].text
@@ -442,7 +445,7 @@ class CommGUI:
                                  font=self.styles.bold_font)
         self.intensity_button = Button(self.communication_frame,
                                   text="Start Run", width=23,
-                                  command=self.Home,
+                                  command=self.intensity_checker,
                                   bg=self.styles.button_background,
                                   fg=self.styles.button_foreground,
                                   bd=self.styles.button_border_size,
@@ -1381,7 +1384,63 @@ class CommGUI:
 
                     self.calculation.update_values(self)
                     self.calculation.update_button["state"] = "normal"
+                    self.title_value = f"Z-Scan Sample analysis had done at SSN Research Center on {x.strftime("%d")}"\
+                                       f" {x.strftime("%b")} {x.strftime("%Y")} {x.strftime("%X")}"
+                    self.sweeping_distance_value = self.sweeping_distance_entry.get() + " " + self.clicked_sweeping_distance.get()
+                    self.step_distance_value = self.step_value_entry.get() + " " + self.clicked_step_value.get()
+                    self.bandwidth_value = self.xml[0][1].text
                     self.Home()
+
+            if self.intensity_threading_status:
+                self.value_show_threading = False
+                # self.ax.set_xlim([final_point, initial_point])
+                self.x_data = np.array([])
+                self.y_data = np.array([])
+                self.lines.set_xdata(self.x_data)
+                self.lines.set_ydata(self.y_data)
+                self.lines.set_color("green")
+                self.canvas.draw()
+                current_point = 0
+                self.ax.set_xlabel("Time in s")
+                self.ax.set_ylabel("Power in W")
+                self.canvas.draw()
+                while self.intensity_threading_status:
+                    self.x_data = np.append(self.x_data, current_point)
+                    value = self.detector.query("read?")
+                    self.y_data = np.append(self.y_data, float(value))
+                    self.power_value.config(text=str(value))
+                    if len(self.y_data) == 1:
+                        pass
+                    else:
+                        x_max = self.x_data.max()
+                        x_min = self.x_data.min()
+                        self.ax.set_xlim([x_min, x_max])
+
+                        y_max = self.y_data.max()
+                        y_min = self.y_data.min()
+                        y_min = y_min - (y_min * 0.01)
+                        y_max = y_max + (y_max * 0.01)
+                        self.ax.set_ylim([y_min, y_max])
+
+                    self.lines.set_xdata(self.x_data)
+                    self.lines.set_ydata(self.y_data)
+
+                    self.canvas.draw()
+
+                    current_point = current_point + 0.3
+                    sleep(0.3)
+
+                if not self.run_threading_status:
+                    self.ax.set_xlabel("Distance in mm")
+                    self.ax.set_ylabel("Power in W")
+                    self.x_data = np.array([])
+                    self.y_data = np.array([])
+                    self.lines.set_xdata(self.x_data)
+                    self.lines.set_ydata(self.y_data)
+                    self.canvas.draw()
+                    self.status_retainer()
+                    self.value_show_threading = True
+
 
     def sendCommand(self, command):
         # print("S= " + command)
@@ -1602,6 +1661,8 @@ class CommGUI:
             self.home_button["state"] = "disabled"
         if self.end_button["text"] == "End":
             self.end_button["state"] = "disabled"
+        if self.intensity_button["text"] == "Start Run":
+            self.intensity_button["state"] = "disabled"
         if self.run_button_without_aperture["text"] == "Start Run without Aperture":
             self.run_button_without_aperture["state"] = "disabled"
         if self.run_button_with_aperture["text"] == "Start Run with Aperture":
@@ -1623,6 +1684,10 @@ class CommGUI:
             self.end_button["text"] = "End"
         else:
             self.end_button["state"] = "normal"
+        if self.intensity_button["text"] == "Stop Run":
+            self.intensity_button["text"] = "Start Run"
+        else:
+            self.intensity_button["state"] = "normal"
         if self.run_button_without_aperture["text"] == "Stop Run":
             self.run_button_without_aperture["text"] = "Start Run without Aperture"
         else:
@@ -1674,8 +1739,6 @@ class CommGUI:
 
     def Run_without_aperture(self):
         if self.run_button_without_aperture["text"] == "Start Run without Aperture":
-            self.value_show_threading = False
-            sleep(0.1)
             self.run_threading_status = True
             self.run_button_without_aperture["text"] = "Stop Run"
             self.notebook.hide(1)
@@ -1687,6 +1750,19 @@ class CommGUI:
         else:
             self.sendCommand(self.command.stopCommand)
             self.run_threading_status = False
+
+    def intensity_checker(self):
+        if self.intensity_button["text"] == "Start Run":
+            self.intensity_threading_status = True
+            self.intensity_button["text"] = "Stop Run"
+            self.notebook.hide(1)
+            self.status_updater()
+            self.save_data_button["state"] = "disabled"
+            self.enter_file_name_entry["state"] = "disabled"
+            self.reset_all_button["state"] = "disabled"
+            self.save_image_data_button["state"] = "disabled"
+        else:
+            self.intensity_threading_status = False
 
     def num_validator(self, received_data):
         self.data = received_data
@@ -1799,6 +1875,7 @@ class CommGUI:
     def enable_buttons(self):
         self.home_button["state"] = "normal"
         self.end_button["state"] = "normal"
+        self.intensity_button["state"] = "normal"
         self.run_button_without_aperture["state"] = "normal"
         self.run_button_with_aperture["state"] = "normal"
         self.home_to_maxima_entry["state"] = "normal"
@@ -1811,6 +1888,7 @@ class CommGUI:
     def disable_buttons(self):
         self.home_button["state"] = "disabled"
         self.end_button["state"] = "disabled"
+        self.intensity_button["state"] = "disabled"
         self.run_button_without_aperture["state"] = "disabled"
         self.run_button_with_aperture["state"] = "disabled"
         self.home_to_maxima_entry["state"] = "disabled"
@@ -1856,6 +1934,7 @@ class CommGUI:
 
         self.home_button.grid(row=0, column=4, pady=5, padx=(10, 0))
         self.end_button.grid(row=1, column=4, pady=5, padx=(10, 0))
+        self.intensity_button.grid(row=2, column=4, pady=5, padx=(10, 0))
         self.home_to_maxima.grid(row=0, column=0)
         self.sweeping_distance.grid(row=1, column=0)
         self.step_value.grid(row=2, column=0)

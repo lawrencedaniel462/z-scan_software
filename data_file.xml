@@ -12,11 +12,11 @@
         <linear_refractive_index>1</linear_refractive_index>
     </config>
     <default>
-        <start_value>12</start_value>
+        <start_value>35</start_value>
         <start_value_unit>mm</start_value_unit>
-        <stop_value>10</stop_value>
+        <stop_value>15</stop_value>
         <stop_value_unit>mm</stop_value_unit>
-        <step_value>0.5</step_value>
+        <step_value>0.25</step_value>
         <step_value_unit>mm</step_value_unit>
         <focal_length>200</focal_length>
         <close_aperture_dia>2</close_aperture_dia>

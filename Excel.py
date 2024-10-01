@@ -9,13 +9,13 @@ style = Style()
 
 class Excel:
     def save_data_excel(self, data):
-        self.without_aperture_excel(data)
-        # if (len(data.without_aperture_x_data) != 0) and (len(data.with_aperture_x_data) == 0):
-        #     self.without_aperture_excel(data)
-        # elif (len(data.without_aperture_x_data) == 0) and (len(data.with_aperture_x_data) != 0):
-        #     self.with_aperture_excel(data)
-        # elif (len(data.without_aperture_x_data) != 0) and (len(data.with_aperture_x_data) != 0):
-        #     self.excel_selector(data)
+        # self.without_aperture_excel(data)
+        if (len(data.without_aperture_x_data) != 0) and (len(data.with_aperture_x_data) == 0):
+            self.without_aperture_excel(data)
+        elif (len(data.without_aperture_x_data) == 0) and (len(data.with_aperture_x_data) != 0):
+            self.with_aperture_excel(data)
+        elif (len(data.without_aperture_x_data) != 0) and (len(data.with_aperture_x_data) != 0):
+            self.excel_selector(data)
 
     def get_file(self, data):
         # regex = re.compile('.')
@@ -33,7 +33,7 @@ class Excel:
         self.title = workbook.add_format({'border': 1, 'bold': True, 'align': 'center',
                                           'font_color': 'red', 'font_size': 14})
         self.border = workbook.add_format({'border': 1})
-        print(type(self.border))
+        # print(type(self.border))
         self.bold_and_border = workbook.add_format({'border': 1, 'bold': True})
         self.bold = workbook.add_format({'bold': True})
         self.bold_and_border_and_center = workbook.add_format({'border': 1, 'bold': True, 'align': 'center'})

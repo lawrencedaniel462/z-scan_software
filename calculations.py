@@ -125,9 +125,9 @@ class Calculation:
 
         self.alpha = Label(self.output_frame, text="Linear absorption coefficient (\u03B1)", anchor="w",
                            width=35, padx=7, pady=8, bg=gui.styles.bg_color)
-        self.Omega_not = Label(self.output_frame, text="Beam waist at focal point (2\u03C9\u2080)", anchor="w",
+        self.Omega_not = Label(self.output_frame, text="Beam waist radius at focal point (\u03C9\u2080)", anchor="w",
                                width=35, padx=7, pady=8, bg=gui.styles.bg_color)
-        self.I_not = Label(self.output_frame, text="(I\u2080)", anchor="w",
+        self.I_not = Label(self.output_frame, text="Intensity at focus (I\u2080)", anchor="w",
                            width=35, padx=7, pady=8, bg=gui.styles.bg_color)
         self.ZR = Label(self.output_frame, text="Rayleigh length (Z\u1D63)", anchor="w",
                         width=35, padx=7, pady=8, bg=gui.styles.bg_color)
@@ -137,7 +137,7 @@ class Calculation:
                              width=35, padx=7, pady=8, bg=gui.styles.bg_color)
         self.leff = Label(self.output_frame, text="Effective Length (L\u2091)", anchor="w",
                           width=35, padx=7, pady=8, bg=gui.styles.bg_color)
-        self.k = Label(self.output_frame, text="(k)", anchor="w",
+        self.k = Label(self.output_frame, text="Extinction Coefficient (k)", anchor="w",
                        width=35, padx=7, pady=8, bg=gui.styles.bg_color)
         self.n2 = Label(self.output_frame, text="Non linear refractive index (n²)", anchor="w",
                         width=35, padx=7, pady=8, bg=gui.styles.bg_color)
@@ -190,15 +190,15 @@ class Calculation:
                                       disabledforeground=gui.styles.disabled_foreground_entry)
 
         self.alpha_unit = "m⁻¹"
-        self.Omega_not_unit = "m"
-        self.I_not_unit = "W/m²"
+        self.Omega_not_unit = "μm"
+        self.I_not_unit = "MW/m²"
         self.ZR_unit = "mm"
         self.S_unit = ""
         self.del_phi_unit = ""
-        self.leff_unit = "m"
+        self.leff_unit = "mm"
         self.k_unit = "m⁻¹"
         self.n2_unit = "m²/W"
-        self.beta_unit = "mW"
+        self.beta_unit = "m/W"
         self.real_unit = "cm²/W"
         self.imaginary_unit = "cm/W"
         self.susceptibility_unit = "(esu)"
@@ -354,7 +354,7 @@ class Calculation:
         z_scan_sample_thickness = 0
         NtoV = 0
         n_not = 0
-        epsilon = 8.854187817 * 10E-12
+        epsilon = 8.854187817 * 1E-12
         C = 299792458
 
         alpha = 0
@@ -370,46 +370,46 @@ class Calculation:
 
         try:
             transmittance = float(remove_last(self.transmittance_value["text"], 2))
-            transmittance_thickness = float(remove_last(self.transmittance_thickness_value["text"], 3))
+            transmittance_thickness = float(remove_last(self.transmittance_thickness_value["text"], 3)) * 1E-3
         except:
             pass
         try:
-            alpha = 2.303 * (1000 / transmittance_thickness) * math.log10(100 / transmittance)
+            alpha = 2.303 * (1 / transmittance_thickness) * math.log10(100 / transmittance)
             self.alpha_value["text"] = f"{alpha} " + self.alpha_unit
         except:
             pass
 
         try:
-            wavelength = float(remove_last(self.wavelength_value["text"], 3))
-            focal_length = float(remove_last(self.focal_length_value["text"], 3))
-            laser_beam_diameter = float(remove_last(self.laser_beam_diameter_value["text"], 3))
+            wavelength = float(remove_last(self.wavelength_value["text"], 3)) * 1E-9
+            focal_length = float(remove_last(self.focal_length_value["text"], 3)) * 1E-3
+            laser_beam_diameter = float(remove_last(self.laser_beam_diameter_value["text"], 3)) * 1E-3
         except:
             pass
         try:
-            omega_not = (4 * wavelength * focal_length * 10E-9)/(math.pi * laser_beam_diameter)
-            self.Omega_not_value["text"] = f"{omega_not} " + self.Omega_not_unit
+            omega_not = (4 * wavelength * focal_length) /(math.pi * laser_beam_diameter * 2)
+            self.Omega_not_value["text"] = f"{omega_not * 1E6} " + self.Omega_not_unit
         except:
             pass
 
         try:
             laser_power = float(remove_last(self.laser_beam_input_power_value["text"], 2))
-            beam_rad_at_aperture = float(remove_last(self.beam_rad_at_aperture_value["text"], 3))
+            beam_rad_at_aperture = float(remove_last(self.beam_rad_at_aperture_value["text"], 3)) * 1E3
         except:
             pass
         try:
-            I_not = laser_power / (math.pi * beam_rad_at_aperture**2 * 10E-6)
-            self.I_not_value["text"] = f"{I_not} " + self.I_not_unit
-        except:
-            pass
-
-        try:
-            ZR = (math.pi * beam_rad_at_aperture**2 * 10E+6) / wavelength
-            self.ZR_value["text"] = f"{ZR} " + self.ZR_unit
+            I_not = laser_power / (math.pi * (omega_not)**2)
+            self.I_not_value["text"] = f"{I_not * 1E-6} " + self.I_not_unit
         except:
             pass
 
         try:
-            close_aperture = float(remove_last(self.close_aperture_value["text"], 3))
+            ZR = (math.pi * (omega_not**2)) / (wavelength)
+            self.ZR_value["text"] = f"{ZR * 1E3} " + self.ZR_unit
+        except:
+            pass
+
+        try:
+            close_aperture = float(remove_last(self.close_aperture_value["text"], 3)) *1E3
         except:
             pass
         try:
@@ -429,12 +429,13 @@ class Calculation:
             pass
 
         try:
-            z_scan_sample_thickness = float(remove_last(self.z_scan_sample_thickness_value["text"], 3))
+            z_scan_sample_thickness = float(remove_last(self.z_scan_sample_thickness_value["text"], 3)) * 1E-3
         except:
             pass
         try:
             leff = (1 - math.exp(-alpha * z_scan_sample_thickness)) / alpha
-            self.leff_value["text"] = f"{leff} " + self.leff_unit
+            print(alpha, z_scan_sample_thickness)
+            self.leff_value["text"] = f"{leff * 1E3} " + self.leff_unit
         except:
             pass
 
@@ -465,13 +466,13 @@ class Calculation:
         except:
             pass
         try:
-            real = (10E-4 * epsilon * (C**2) * (n_not**2) * n2) / math.pi
+            real = (1E-4 * epsilon * (C**2) * (n_not**2) * n2) / math.pi
             self.real_value["text"] = f"{real} " + self.real_unit
         except:
             pass
 
         try:
-            imaginary = (10E-2 * epsilon * (C**2) * (n_not**2) * wavelength * beta) / (4 * (math.pi**2))
+            imaginary = (1E-2 * epsilon * (C**2) * (n_not**2) * wavelength * beta) / (4 * (math.pi**2))
             self.imaginary_value["text"] = f"{imaginary} " + self.imaginary_unit
         except:
             pass
@@ -499,7 +500,7 @@ class Calculation:
             self.make_as_text = workbook.add_format({'num_format': '@'})
             self.default = workbook.add_format()
 
-            worksheet.merge_range("A1:G1", gui.title_value, self.title)
+            worksheet.merge_range("A1:H1", gui.title_value, self.title)
             worksheet.write("C2", gui.sweeping_distance_value, self.default)
             worksheet.write("C3", gui.step_distance_value, self.default)
             worksheet.write("C4", gui.bandwidth_value, self.default)
@@ -547,6 +548,7 @@ class Calculation:
             worksheet.merge_range("E14:F14", "Imaginary Part", self.bold)
             worksheet.merge_range("E15:F15", "Susceptibility", self.bold)
 
+            worksheet.write("G2", str(abs(float(self.del_phi_close_value["text"]))), self.default)
             worksheet.write("G3", self.alpha_value["text"], self.default)
             worksheet.write("G4", self.Omega_not_value["text"], self.default)
             worksheet.write("G5", self.I_not_value["text"], self.default)
