@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="Return home functionality and calculation part checked">
-      <change afterPath="$PROJECT_DIR$/Demo001 open aperture.xlsx" afterDir="false" />
+    <list default="true" id="022da462-3422-442c-ad40-6732ced8a736" name="Changes" comment="Calculation corrected version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Demo from test.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Demo from test.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Excel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Excel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI_Master.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI_Master.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculations.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_file.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data_file.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726817794556</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Calculation corrected version">
+      <option name="closed" value="true" />
+      <created>1727782348051</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727782348051</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -239,6 +241,7 @@
     <MESSAGE value="GUI improved and functionality added" />
     <MESSAGE value="open file functionality and calculation part added" />
     <MESSAGE value="Return home functionality and calculation part checked" />
-    <option name="LAST_COMMIT_MESSAGE" value="Return home functionality and calculation part checked" />
+    <MESSAGE value="Calculation corrected version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calculation corrected version" />
   </component>
 </project>
