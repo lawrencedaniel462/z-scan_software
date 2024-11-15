@@ -98,7 +98,7 @@ class CommGUI:
         self.wavelength_value = self.xml[0][0].text
         self.bandwidth_value = self.xml[0][1].text
 
-        self.notebook.hide(1)
+        # self.notebook.hide(1)
 
         self.x_data = np.array([])
         self.y_data = np.array([])
@@ -444,7 +444,7 @@ class CommGUI:
                                  activeforeground=self.styles.button_active_foreground,
                                  font=self.styles.bold_font)
         self.intensity_button = Button(self.communication_frame,
-                                  text="Start Run", width=23,
+                                  text="Start Tracing Beam Intensity", width=23,
                                   command=self.intensity_checker,
                                   bg=self.styles.button_background,
                                   fg=self.styles.button_foreground,
@@ -1048,9 +1048,12 @@ class CommGUI:
     def USBOptionMenu(self):
         self.tuple1 = self.usb.list_resources()
         self.list1 = list(self.tuple1)
-        self.list1.insert(0, "-")
         self.clicked_usb = StringVar()
-        self.clicked_usb.set(self.list1[0])
+        self.list1.insert(0, "-")
+        if self.xml[2][0].text in self.list1:
+            self.clicked_usb.set(self.xml[2][0].text)
+        else:
+            self.clicked_usb.set(self.list1[0])
         self.drop_usb = OptionMenu(self.connection_frame, self.clicked_usb, *self.list1, command=self.Connect_Ctrl)
         self.drop_usb.config(width=35,
                              bg=self.styles.drop_background_color,
@@ -1062,7 +1065,10 @@ class CommGUI:
     def com_option_menu(self):
         self.get_com_list()
         self.clicked_com = StringVar()
-        self.clicked_com.set(self.com_list[0])
+        if self.xml[2][1].text in self.com_list:
+            self.clicked_com.set(self.xml[2][1].text)
+        else:
+            self.clicked_com.set(self.com_list[0])
         self.drop_com = OptionMenu(self.connection_frame, self.clicked_com, *self.com_list, command=self.Connect_Ctrl)
         self.drop_com.config(width=35,
                              bg=self.styles.drop_background_color,
@@ -1075,7 +1081,10 @@ class CommGUI:
         bds = ["-", "300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "38400", "56000", "57600",
                "115200", "128000", "256000"]
         self.clicked_bd = StringVar()
-        self.clicked_bd.set(bds[0])
+        if self.xml[2][2].text in bds:
+            self.clicked_bd.set(self.xml[2][2].text)
+        else:
+            self.clicked_bd.set(bds[0])
         self.drop_bd = OptionMenu(self.connection_frame, self.clicked_bd, *bds, command=self.Connect_Ctrl)
         self.drop_bd.config(width=35,
                             bg=self.styles.drop_background_color,
@@ -1105,6 +1114,10 @@ class CommGUI:
         self.Connect_Ctrl(logic)
 
     def SerialConnect(self):
+        self.xml[2][0].text = self.clicked_usb.get()
+        self.xml[2][1].text = self.clicked_com.get()
+        self.xml[2][2].text = self.clicked_bd.get()
+        tree.write("data_file.xml")
         if self.com_btn_connect["text"] in "Connect":
             try:
                 usb_status = False
@@ -1661,7 +1674,7 @@ class CommGUI:
             self.home_button["state"] = "disabled"
         if self.end_button["text"] == "End":
             self.end_button["state"] = "disabled"
-        if self.intensity_button["text"] == "Start Run":
+        if self.intensity_button["text"] == "Start Tracing Beam Intensity":
             self.intensity_button["state"] = "disabled"
         if self.run_button_without_aperture["text"] == "Start Run without Aperture":
             self.run_button_without_aperture["state"] = "disabled"
@@ -1685,7 +1698,7 @@ class CommGUI:
         else:
             self.end_button["state"] = "normal"
         if self.intensity_button["text"] == "Stop Run":
-            self.intensity_button["text"] = "Start Run"
+            self.intensity_button["text"] = "Start Tracing Beam Intensity"
         else:
             self.intensity_button["state"] = "normal"
         if self.run_button_without_aperture["text"] == "Stop Run":
@@ -1752,7 +1765,7 @@ class CommGUI:
             self.run_threading_status = False
 
     def intensity_checker(self):
-        if self.intensity_button["text"] == "Start Run":
+        if self.intensity_button["text"] == "Start Tracing Beam Intensity":
             self.intensity_threading_status = True
             self.intensity_button["text"] = "Stop Run"
             self.notebook.hide(1)

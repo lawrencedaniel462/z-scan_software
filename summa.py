@@ -1,7 +1,18 @@
-import datetime
+# import datetime
+#
+# x = datetime.datetime.now()
+#
+# print(x.year)
+# print(f"Z-Scan Sample analysis had done at SSN Research Center on {x.strftime("%d")}"
+#                         f" {x.strftime("%b")} {x.strftime("%Y")} {x.strftime("%X")}")
 
-x = datetime.datetime.now()
+from tkinter import ttk, messagebox, filedialog
+from tkinter import *
+root = Tk()
+# file_path = filedialog.askdirectory(title="Select the folder to save")
+#asksaveasfilename
+# if file is None:
+#     return
 
-print(x.year)
-print(f"Z-Scan Sample analysis had done at SSN Research Center on {x.strftime("%d")}"
-                        f" {x.strftime("%b")} {x.strftime("%Y")} {x.strftime("%X")}")
+file_path = filedialog.SaveFileDialog(root, title="Select the folder to save")
+root.mainloop()

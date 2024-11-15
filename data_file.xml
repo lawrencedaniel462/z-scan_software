@@ -23,4 +23,9 @@
         <pulse_width>180</pulse_width>
         <steps_per_rotation>800</steps_per_rotation>
     </default>
+    <setup>
+        <usb>-</usb>
+        <com>-</com>
+        <baudrate>-</baudrate>
+    </setup>
 </root>
